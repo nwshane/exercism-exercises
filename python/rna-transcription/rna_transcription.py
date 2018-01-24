@@ -14,4 +14,4 @@ def convertCharToRna(char):
 
 
 def to_rna(dna_strand):
-    return ''.join(map(lambda char: convertCharToRna(char), list(dna_strand)))
+    return ''.join(map(lambda char: convertCharToRna(char), dna_strand))
