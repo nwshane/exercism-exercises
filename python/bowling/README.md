@@ -90,4 +90,3 @@ The Bowling Game Kata at but UncleBob [http://butunclebob.com/ArticleS.UncleBob.
 
 ## Submitting Incomplete Solutions
 It's possible to submit an incomplete solution so you can see how others have completed the exercise.
-

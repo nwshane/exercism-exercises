@@ -47,7 +47,6 @@ class BowlingFrame:
 class BowlingGame(object):
     def __init__(self):
         self.frames = []
-        self.current_frame = None
 
     def get_frame_score(self, frame_index):
         frame = self.frames[frame_index]
@@ -70,21 +69,16 @@ class BowlingGame(object):
 
     def roll(self, pins):
         print('frames: ' + str(self.get_frame_pins()))
-        if len(self.frames) == 10:
+        if len(self.frames) == 10 and self.frames[-1].is_finished():
             raise ValueError('Cannot play more than 10 bowling rounds')
 
         if pins < 0:
             raise ValueError('Cannot knock over negative pins')
 
-        if not self.current_frame:
-            self.current_frame = BowlingFrame(is_last_frame=len(self.frames) == 9)
+        if len(self.frames) == 0 or self.frames[-1].is_finished():
+            self.frames.append(BowlingFrame(is_last_frame=len(self.frames) == 9))
 
-        self.current_frame.set_next_roll(pins)
-
-        if self.current_frame.is_finished():
-            print('finished frame')
-            self.frames.append(self.current_frame)
-            self.current_frame = None
+        self.frames[-1].set_next_roll(pins)
 
     def score(self):
         if len(self.frames) != 10:
